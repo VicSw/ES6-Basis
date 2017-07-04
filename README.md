@@ -148,3 +148,39 @@ const template = `<div>
     console.log(s.repeat(3)) // 'hehehe'
     //如果你带入小数, Math.floor(num) 来处理
 ```
+3.函数
+==============================
+在ES5我们给函数定义参数默认值是怎么样？<br>
+```javascript
+ function action(num) {
+        num = num || 200
+        //当传入num时，num为传入的值
+        //当没传入参数时，num即有了默认值200
+        return num
+    }
+```
+但有的同学肯定会发现，num传入为0的时候就是false， 此时num = 200 与我们的实际要的效果明显不一样<br>
+ES6为参数提供了默认值。在定义函数时便初始化了这个参数，以便在参数没有被传递进去时使用。<br>
+```javascript
+function action(num = 200) {
+        console.log(num)
+    }
+    action() //200
+    action(300) //300
+```
+>箭头函数
+-----------
+箭头函数最直观的三个特点。
+
+1.不需要function关键字来创建函数<br>
+2.省略return关键字<br>
+3.继承当前上下文的 this 关键字<br>
+```javascript
+//例如：
+    [1,2,3].map( x => x + 1 )
+
+//等同于：
+    [1,2,3].map((function(x){
+        return x + 1
+    }).bind(this))
+```
