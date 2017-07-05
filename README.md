@@ -168,7 +168,7 @@ function action(num = 200) {
     action() //200
     action(300) //300
 ```
->箭头函数
+箭头函数
 -----------
 箭头函数最直观的三个特点。
 
@@ -183,4 +183,63 @@ function action(num = 200) {
     [1,2,3].map((function(x){
         return x + 1
     }).bind(this))
+```
+当你的函数有且仅有一个参数的时候，是可以省略掉括号的。当你函数返回有且仅有一个表达式的时候可以省略{}；例如:<br>
+```javascript
+ var people = name => 'hello' + name
+    //参数name就没有括号
+```
+如下：<br>
+```javascript
+ var people = (name, age) => {
+        const fullName = 'h' + name
+        return fullName
+    } 
+    //如果缺少()或者{}就会报错
+```
+4.拓展的对象功能
+==================================
+对象初始化简写
+<br>
+ES5我们对于对象都是以键值对的形式书写，是有可能出现键值对重名的。例如：<br>
+```javascript
+ function people(name, age) {
+        return {
+            name: name,
+            age: age
+        };
+    }
+```
+键值对重名，ES6可以简写如下：<br>
+```javascript
+    function people(name, age) {
+        return {
+            name,
+            age
+        };
+    }
+```
+ES6 同样改进了为对象字面量方法赋值的语法。ES5为对象添加方法：<br>
+```javascript
+const people = {
+        name: 'lux',
+        getName: function() {
+            console.log(this.name)
+        }
+    }
+```
+ES6通过省略冒号与 function 关键字，将这个语法变得更简洁<br>
+```javascript
+const people = {
+        name: 'lux',
+        getName () {
+            console.log(this.name)
+        }
+    }
+```
+ES6 对象提供了Object.assign()这个方法来实现浅复制。Object.assign()<br>
+可以把任意多个源对象自身可枚举的属性拷贝给目标对象，然后返回目标对象。<br>
+第一参数即为目标对象。在实际项目中，我们为了不改变源对象。一般会把目标对象传为{}<br>
+```javascript
+ const obj = Object.assign({}, objA, objB)
 ```
