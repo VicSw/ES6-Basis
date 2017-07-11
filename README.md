@@ -243,3 +243,33 @@ ES6 对象提供了Object.assign()这个方法来实现浅复制。Object.assign
 ```javascript
  const obj = Object.assign({}, objA, objB)
 ```
+5.更方便的数据访问--解构
+==============================
+数组和对象是JS中最常用也是最重要表示形式。为了简化提取信息，ES6新增了解构，这是将一个数据结构分解为更小的部分的过程<br>
+
+ES5我们提取对象中的信息形式如下：<br>
+```javascript
+const people = {
+        name: 'lux',
+        age: 20
+    }
+    const name = people.name
+    const age = people.age
+    console.log(name + ' --- ' + age)
+```
+是不是觉得很熟悉，没错，在ES6之前我们就是这样获取对象信息的，一个一个获取。<br>
+现在，解构能让我们从对象或者数组里取出数据存为变量，例如<br>
+```javascript
+ //对象
+    const people = {
+        name: 'lux',
+        age: 20
+    }
+    const { name, age } = people
+    console.log(`${name} --- ${age}`)
+    //数组
+    const color = ['red', 'blue']
+    const [first, second] = color
+    console.log(first) //'red'
+    console.log(second) //'blue'
+```
