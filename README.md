@@ -273,3 +273,98 @@ const people = {
     console.log(first) //'red'
     console.log(second) //'blue'
 ```
+6.Spread Operator 展开运算符
+==========================================
+ES6中另外一个好玩的特性就是Spread Operator 也是三个点儿...接下来就展示一下它的用途。<br>
+
+组装对象或者数组<br>
+
+```javascript
+//数组
+    const color = ['red', 'yellow']
+    const colorful = [...color, 'green', 'pink']
+    console.log(colorful) //[red, yellow, green, pink]
+
+    //对象
+    const alp = { fist: 'a', second: 'b'}
+    const alphabets = { ...alp, third: 'c' }
+    console.log(alphabets) //{ "fist": "a", "second": "b", "third": "c"
+}
+
+
+```
+有时候我们想获取数组或者对象除了前几项或者除了某几项的其他项<br>
+```javascript
+//数组
+    const number = [1,2,3,4,5]
+    const [first, ...rest] = number
+    console.log(rest) //2,3,4,5
+    //对象
+    const user = {
+        username: 'lux',
+        gender: 'female',
+        age: 19,
+        address: 'peking'
+    }
+    const { username, ...rest } = user
+    console.log(rest) //{"address": "peking", "age": 19, "gender": "female"
+}
+```
+对于 Object 而言，还可以用于组合成新的 Object 。(ES2017 stage-2 proposal) 当然如果有重复的属性名，右边覆盖左边<br>
+```javascript
+const first = {
+        a: 1,
+        b: 2,
+        c: 6,
+    }
+    const second = {
+        c: 3,
+        d: 4
+    }
+    const total = { ...first, ...second }
+    console.log(total) // { a: 1, b: 2, c: 3, d: 4 }
+
+```
+7.import 和 export
+==================================
+import导入模块、export导出模块<br>
+```javascript
+//全部导入
+import people from './example'
+
+//有一种特殊情况，即允许你将整个模块当作单一对象进行导入
+//该模块的所有导出都会作为对象的属性存在
+import * as example from "./example.js"
+console.log(example.name)
+console.log(example.age)
+console.log(example.getName())
+
+//导入部分
+import {name, age} from './example'
+
+// 导出默认, 有且只有一个默认
+export default App
+
+// 部分导出
+export class App extend Component {};
+
+```
+以前有人问我，导入的时候有没有大括号的区别是什么。下面是我在工作中的总结：<br>
+```javascript
+1.当用export default people导出时，就用 import people 导入（不带大括号）
+
+2.一个文件里，有且只能有一个export default。但可以有多个export。
+
+3.当用export name 时，就用import { name }导入（记得带上大括号）
+
+4.当一个文件里，既有一个export default people, 又有多个export name 或者 export age时，导入就用 import people, { name, age } 
+
+5.当一个文件里出现n多个 export 导出很多模块，导入时除了一个一个导入，也可以用import * as example
+
+```
+
+8. Promise
+======================
+```javascript
+在promise之前代码过多的回调或者嵌套，可读性差、耦合度高、扩展性低。通过Promise机制，扁平化的代码机构，大大提高了代码可读性；用同步编程的方式来编写异步代码，保存线性的代码逻辑，极大的降低了代码耦合性而提高了程序的可扩展性。
+```
